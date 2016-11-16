@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 # @Author: CarlZ
-# @Date:   2016-11-14 22:47:55
+# @Date:   2016-11-16 00:32:03
 # @Last Modified by:   CarlZ
-# @Last Modified time: 2016-11-14 23:13:43
-
+# @Last Modified time: 2016-11-16 00:32:55
 from __future__ import unicode_literals
+
 from django.db import models
+
+# Create your models here.
 
 
 class Catagory(models.Model):
@@ -28,7 +30,7 @@ class Tag(models.Model):
         return self.name
 
 
-class article(models.Models):
+class Article(models.Model):
     """
         文章
     """
