@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from article import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.blog_index),
+    url(r'^index.*$', views.blog_index),
+    url(r'^detail/(?P<article_id>\d+)[/]$', views.detail),
+    url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'D:\\github\\blog\\article\\templates\\css'}),
+    url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'D:\\github\\blog\\article\\templates\\js'}),
+    url(r'^images/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'D:\\github\\blog\\article\\templates\\images'}),
+    url(r'^fonts/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'D:\\github\\blog\\article\\templates\\fonts'}),
 ]
