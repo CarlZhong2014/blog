@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+     <div class="title">
+    <h3>最新发布</h3>
+  </div>
+<!-- 文章列表 -->
+  {% for article in article_list %}
+  <article class="excerpt excerpt-{{article.id}}" style="">
+    <a class="focus" href="detail/{{article.id}}" title="{{article.title}}" target="_blank" ><img class="thumb" data-original="{% static "images/2017112701.jpeg" %}" src="{% static "images/2017112701.jpeg" %}" alt="{{article.title}}"  style="display:   inline;"></a>
+    <!-- 文章类别 -->
+    <header><a class="cat" href="#" title="{{article.catagory_id}}" >{{article.catagory_id}}<i></i></a>
+    <!-- 文章标题 -->
+      <h2>
+        <a href="detail/{{article.id}}" title="{{article.title}}" target="_blank" >{{article.title}}</a>
+      </h2>
+    </header>
+    <p class="meta">
+    <!-- 文章发布时间 -->
+      <time class="time"><i class="glyphicon glyphicon-time"></i> {{article.createtime}}</time>
+    <!-- 文章阅读数和评论数 -->
+      <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="##comment" title="评论"   target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
+    </p>
+    <p class="note">{{article.content}}</p>
+  </article>
+  {%endfor%}
+
+  <nav class="pagination" style="display: none;">
+    <ul>
+      <li class="prev-page"></li>
+      <li class="active"><span>1</span></li>
+      <li><a href="?page=2">2</a></li>
+      <li class="next-page"><a href="?page=2">下一页</a></li>
+      <li><span>共 2 页</span></li>
+    </ul>
+  </nav>
+</div>
+</div>
+{% endblock %}
+
