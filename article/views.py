@@ -1,15 +1,25 @@
 # -*- coding: utf-8 -*-
-from models import Article
+from models import Article, Catagory, Tag
 from django.shortcuts import render
 # Create your views here.
 
 
-def blog_index(req):
-    article_list = Article.objects.all()
-#    return render(req, "index.html", {"article_list": article_list})
-    return render(req, "home.html", {"article_list": article_list})
+def blog_home(request_obj):
+    articles_list = Article.objects.all()
+    tags_list = Tag.objects.all()
+    context = {
+        "articles_list": articles_list,
+        "tags_list": tags_list,
+    }
+    return render(request_obj, "home.html", context)
 
-def detail(req, article_id):
-    article_obj = Article.objects.filter(id=article_id)[0]
-    article_list = Article.objects.all()
-    return render(req, "show.html", {"article_obj": article_obj, "article_list": article_list})
+
+def tag_articles(request_obj):
+    pass
+
+
+def categories(request_obj):
+    pass
+
+def article_detail(request_obj):
+    pass

@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% block tags %}
+  {% for tag in tags_list %}
+  <li><a href="{% url 'tag_articles' tag.id %}" title="{{tag.name}}" draggable="false">{{tag.name}} <span class="badge">1</span></a></li>
+  {% endfor %}
+  }
+{% endblock tags %}
+
 {% block content %}
      <div class="title">
     <h3>最新发布</h3>
   </div>
 <!-- 文章列表 -->
-  {% for article in article_list %}
+  {% for article in articles_list %}
   <article class="excerpt excerpt-{{article.id}}" style="">
     <a class="focus" href="detail/{{article.id}}" title="{{article.title}}" target="_blank" ><img class="thumb" data-original="{% static "images/2017112701.jpeg" %}" src="{% static "images/2017112701.jpeg" %}" alt="{{article.title}}"  style="display:   inline;"></a>
     <!-- 文章类别 -->
@@ -17,7 +24,7 @@
     </header>
     <p class="meta">
     <!-- 文章发布时间 -->
-      <time class="time"><i class="glyphicon glyphicon-time"></i> {{article.createtime}}</time>
+      <time class="time"><i class="glyphicon glyphicon-time"></i> {{article.pubdate}}</time>
     <!-- 文章阅读数和评论数 -->
       <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="##comment" title="评论"   target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
     </p>
