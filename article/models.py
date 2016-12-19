@@ -2,7 +2,7 @@
 # @Author: CarlZ
 # @Date:   2016-11-16 00:32:03
 # @Last Modified by:   CarlZ
-# @Last Modified time: 2016-12-15 23:38:56
+# @Last Modified time: 2016-12-19 21:25:10
 from __future__ import unicode_literals
 
 from django.db import models
@@ -15,7 +15,8 @@ class Catagory(models.Model):
         分类
     """
     name = models.CharField('类别名称', max_length=20)
-    symbol = models.CharField('类别标识', max_length=40, unique=True)
+    en_name = models.CharField('类别标识', max_length=40, unique=True)
+    nav_status = models.BooleanField('导航项', default=True)
 
     def __unicode__(self):
         return self.name

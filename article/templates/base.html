@@ -28,7 +28,7 @@
     <script>window.location.href='upgrade-browser.html';</script>
   <![endif]-->
 </head>
-<body class="user-select">
+<body class="user-select ">
 <header class="header">
 <nav class="navbar navbar-default" id="navbar">
 <div class="container">
@@ -49,12 +49,10 @@
 
     <!-- 导航 -->
     <ul class="nav navbar-nav navbar-left">
-      <li><a data-cont="Eagleye" title="Eagleye" href="index.html">首页</a></li>
-      <li><a data-cont="系统管理" title="系统管理" href="sa.html">系统管理</a></li>
-      <li><a data-cont="网络" title="网络" href="network.html" >网络</a></li>
-      <li><a data-cont="虚拟化" title="虚拟化" href="virtualization" >虚拟化</a></li>
-      <li><a data-cont="Docker" title="Docker" href="docker" >Docker</a></li>
-      <li><a data-cont="编程" title="编程" href="code.html">Python</a></li>
+      <li><a data-cont="Eagleye" title="Eagleye" href="{% url "blog_home" %}">首页</a></li>
+      {% for item in nav %}
+        <li><a data-cont="{{item.name}}" title="{{item.name}}" href="{% url "catagories" item.en_name %}">{{item.name}}</a></li>
+      {% endfor %}
       <li><a data-cont="关于" title="关于" href="about" >关于</a></li>
     </ul>
   </div>
@@ -90,18 +88,28 @@
         </ul>
     </div>
    </div>
-{% block widget %}
+
 <div class="widget widget_hot">
-      <h3>最新评论文章</h3>
+      {% block hots %}
+      <h3>最热文章</h3>
       <ul>
-      {% for article in article_list %}
-            <li><a title="{{article.title}}" href="#" ><span class="thumbnail">
-                <img class="thumb" data-original="{% static "images/2017112701.jpeg" %}" src={% static "images/2017112701.jpeg" %}" alt="{{article.title}}"  style="display: block;>
-            </span><span class="text">{{article.title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                {{article.createtime}}
-            </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+      {% for article in hot_article_list %}
+            <li>
+              <a title="{{article.title}}" href="{% url "article_detail" article.id %}" draggable="false">
+                <span class="thumbnail">
+                  <img class="thumb" data-original="{% static "images/2017112701.jpeg" %}" src="{% static "images/2017112701.jpeg" %}" alt="{{article.title}}"  style="display: block;">
+                </span>
+                <span class="text">{{article.title}}</span>
+                <span class="muted">
+                  <i class="glyphicon glyphicon-time"></i>
+                  {{article.pubdate}}
+                </span>
+                <span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{ article.page_view }}</span>
+              </a>
+            </li>
       {% endfor %}
       </ul>
+      {% endblock hots %}
  </div>
 <div class="widget widget_sentence">
   <h3>友情链接</h3>
@@ -109,7 +117,7 @@
     <a href="#" title="网站建设" target="_blank" >网站建设</a>&nbsp;&nbsp;&nbsp;
   </div>
 </div>
-{% endblock %}
+
 </aside>
 </section>
 <footer class="footer">

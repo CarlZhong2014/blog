@@ -2,9 +2,8 @@
 {% load staticfiles %}
 {% block tags %}
   {% for tag in tags_list %}
-  <li><a href="{% url 'tag_articles' tag.id %}" title="{{tag.name}}" draggable="false">{{tag.name}} <span class="badge">1</span></a></li>
+  <li><a href="{% url 'tag_articles' tag.id %}" title="{{tag.name}}" draggable="false">{{tag.name}} <span class="badge">{{tag.article_set.count}}</span></a></li>
   {% endfor %}
-  }
 {% endblock tags %}
 
 {% block content %}
@@ -16,7 +15,7 @@
   <article class="excerpt excerpt-{{article.id}}" style="">
     <a class="focus" href="detail/{{article.id}}" title="{{article.title}}" target="_blank" ><img class="thumb" data-original="{% static "images/2017112701.jpeg" %}" src="{% static "images/2017112701.jpeg" %}" alt="{{article.title}}"  style="display:   inline;"></a>
     <!-- 文章类别 -->
-    <header><a class="cat" href="#" title="{{article.catagory_id}}" >{{article.catagory_id}}<i></i></a>
+    <header><a class="cat" href="{% url "catagories" article.catagory.en_name %}" title="{{article.catagory.en_name}}" >{{article.catagory.name}}<i></i></a>
     <!-- 文章标题 -->
       <h2>
         <a href="detail/{{article.id}}" title="{{article.title}}" target="_blank" >{{article.title}}</a>
@@ -26,7 +25,7 @@
     <!-- 文章发布时间 -->
       <time class="time"><i class="glyphicon glyphicon-time"></i> {{article.pubdate}}</time>
     <!-- 文章阅读数和评论数 -->
-      <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 216</span> <a class="comment" href="##comment" title="评论"   target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
+      <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{article.page_view}}</span> <a class="comment" href="##comment" title="评论"   target="_blank" ><i class="glyphicon glyphicon-comment"></i> 0</a>
     </p>
     <p class="note">{{article.content}}</p>
   </article>
