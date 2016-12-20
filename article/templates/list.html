@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block tags %}
   {% for tag in tags_list %}
-  <li><a href="{% url 'tag_articles' tag.id %}" title="{{tag.name}}" draggable="false">{{tag.name}} <span class="badge">{{tag.article_set.count}}</span></a></li>
+  <li><a href="{% url 'tag_articles' tag.id %}" title="{{tag.name}}" draggable="false">{{tag.name}} <span class="badge">{{tag.count}}</span></a></li>
   {% endfor %}
 {% endblock tags %}
 
