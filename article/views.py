@@ -25,8 +25,23 @@ def blog_home(request_obj):
     return render(request_obj, "home.html", context)
 
 
-def tag_articles(request_obj):
-    pass
+def tag_articles(request_obj, tag_id):
+    # 获取导航栏信息。
+    nav = Catagory.objects.filter(nav_status=True)
+
+
+    # 获取所有的标签
+    tags_list = Tag.objects.all()
+    # 获取当前标签包含的所有文章
+    articles_list = Article.objects.filter(tags=tag_id).order_by('-pubdate')
+    hot_article_list = articles_list[0:4]
+    context = {
+        "articles_list": articles_list,
+        "tags_list": tags_list,
+        "hot_article_list": hot_article_list,
+        "nav": nav
+    }
+    return render(request_obj, "home.html", context)
 
 
 def catagories(request_obj, catagory_name):
@@ -61,6 +76,7 @@ def catagories(request_obj, catagory_name):
         tags_list.append(tag_info.copy())
 
     context = {
+        "catagory_name": catagory_name,
         "articles_list": articles_list,
         "tags_list": tags_list,
         "hot_article_list": hot_article_list,
@@ -70,7 +86,7 @@ def catagories(request_obj, catagory_name):
 
 
 
-def catagories_tags(request_obj, category_name, tag_id):
+def catagories_tags(request_obj, catagory_name, tag_id):
     pass
 
 
