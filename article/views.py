@@ -16,11 +16,13 @@ def blog_home(request_obj):
     # 获取全站阅读量前3的文章
     hot_article_list = Article.objects.order_by('-page_view')[0:4]
 
+    # 是否为类别页
     context = {
         "articles_list": articles_list,
         "tags_list": tags_list,
         "hot_article_list": hot_article_list,
-        "nav": nav
+        "nav": nav,
+        "catagory_page_status": 0
     }
     return render(request_obj, "home.html", context)
 
@@ -28,7 +30,6 @@ def blog_home(request_obj):
 def tag_articles(request_obj, tag_id):
     # 获取导航栏信息。
     nav = Catagory.objects.filter(nav_status=True)
-
 
     # 获取所有的标签
     tags_list = Tag.objects.all()
@@ -39,7 +40,8 @@ def tag_articles(request_obj, tag_id):
         "articles_list": articles_list,
         "tags_list": tags_list,
         "hot_article_list": hot_article_list,
-        "nav": nav
+        "nav": nav,
+        "catagory_page_status": 0
     }
     return render(request_obj, "home.html", context)
 
@@ -80,10 +82,10 @@ def catagories(request_obj, catagory_name):
         "articles_list": articles_list,
         "tags_list": tags_list,
         "hot_article_list": hot_article_list,
-        "nav": nav
+        "nav": nav,
+        "catagory_page_status": 1
     }
-    return render(request_obj, "list.html", context)
-
+    return render(request_obj, "home.html", context)
 
 
 def catagories_tags(request_obj, catagory_name, tag_id):
@@ -91,6 +93,12 @@ def catagories_tags(request_obj, catagory_name, tag_id):
 
 
 def article_detail(request_obj, article_id):
+    # 获取导航栏信息。
+    nav = Catagory.objects.filter(nav_status=True)
+    # 获取文章详细信息
     article_detail = Article.objects.get(id=article_id)
-    catagories_host_list = Article.objects.filter(catagory=article_detail.catagory).order_by('-page_view')[0:1]
-    return HttpResponse("%s,%s" % (article_detail.content, catagories_host_list))
+    context = {
+        "article": article_detail,
+        "nav": nav
+    }
+    return render(request_obj, "detail.html", context)

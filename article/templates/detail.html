@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{%block title %} {{article.title}} {%endblock title%}
+{%block bodystyle %} single {% endblock bodystyle %}
+{%block content %}
+  <header class="article-header">
+	<h1 class="article-title">
+		<a href="#" title="{{article.title}}" >{{article.title}}</a>
+	</h1>
+	<div class="article-meta">
+        <!--文章发布时间 -->
+		<span class="item article-meta-time">
+	  		<time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：{{article.pubdate}}">
+	  			<i class="glyphicon glyphicon-time"></i>
+	  			{{article.pubdate}}
+	  		</time>
+	  	</span>
+        <!--文章来源 -->
+	  	<span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者/来源：{{article.author}}">
+	  		<i class="glyphicon glyphicon-globe"></i>
+	  		{{article.author}}
+	  	</span>
+        <!--文章类别 -->
+	  	<span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{article.catagory_name}}">
+	  		<i class="glyphicon glyphicon-list"></i>
+	  		<a href="{%url 'catagories' article.catagory.en_name %}" title="{{article.catagory.name}}" >{{article.catagory.name}}</a>
+	  	</span>
+        <!--文章阅读量 -->
+	  	<span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：{{article.page_view}}">
+	  		<i class="glyphicon glyphicon-eye-open"></i>
+	  		{{article.page_view}}
+	  	</span>
+	  </div>
+  </header>
+  <!--文章标签 -->
+  <div class="article-tags">
+  	标签：
+  	<a href="#list/2/" rel="tag" >随记</a>
+    <a href="#list/2/" rel="tag" >随记</a>
+    <a href="#list/2/" rel="tag" >随记</a>
+  </div>
+  <!--正文开始 -->
+  <article class="article-content">
+	<p>{{article.content|safe}}</p>
+  </article>
+  <!--正文结束 -->
+</div>
+</div>
+{%endblock content %}
+{% block sidebar %}
+{% endblock sidebar %}

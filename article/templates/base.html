@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home</title>
+  <title>{%block title%} Home {%endblock title%} </title>
   <meta name="keywords" content="">
   <meta name="description" content="">
   <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
@@ -28,7 +28,7 @@
     <script>window.location.href='upgrade-browser.html';</script>
   <![endif]-->
 </head>
-<body class="user-select ">
+<body class="user-select {% block bodystyle %} {% endblock bodystyle%}">
 <header class="header">
 <nav class="navbar navbar-default" id="navbar">
 <div class="container">
@@ -74,7 +74,7 @@
           <header><a class="cat" href="{% url "catagories" article.catagory.en_name %}" title="{{article.catagory.en_name}}" >{{article.catagory.name}}<i></i></a>
           <!-- 文章标题 -->
             <h2>
-              <a href="detail/{{article.id}}" title="{{article.title}}" target="_blank" >{{article.title}}</a>
+              <a href="{% url "article_detail" article.id %}" title="{{article.title}}" target="_blank" >{{article.title}}</a>
             </h2>
           </header>
           <p class="meta">
@@ -83,7 +83,7 @@
           <!-- 文章阅读数和评论数 -->
             <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{article.page_view}}</span> <a class="comment" href="##comment" title="评论"   target="_blank" ><i class="      glyphicon glyphicon-comment"></i> 0</a>
           </p>
-          <p class="note">{{article.content}}</p>
+          <p class="note">{{article.abstract}}</p>
         </article>
         {%endfor%}
 
@@ -101,6 +101,7 @@
       {% endblock content%}
     </div>
   </div>
+{% block sidebar %}
 <aside class="sidebar">
 <div class="fixed">
   <div class="widget widget_search">
@@ -154,6 +155,7 @@
 </div>
 
 </aside>
+{% endblock sidebar %}
 </section>
 <footer class="footer">
 <div class="container">

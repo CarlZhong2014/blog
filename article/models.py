@@ -2,7 +2,7 @@
 # @Author: CarlZ
 # @Date:   2016-11-16 00:32:03
 # @Last Modified by:   CarlZ
-# @Last Modified time: 2016-12-19 21:25:10
+# @Last Modified time: 2016-12-22 22:12:13
 from __future__ import unicode_literals
 
 from django.db import models
@@ -41,6 +41,7 @@ class Article(models.Model):
     pubdate = models.DateTimeField('发布时间', auto_now_add=True)
     catagory = models.ForeignKey(Catagory, verbose_name='分类')
     tags = models.ManyToManyField(Tag, verbose_name='标签')
+    abstract = models.TextField("摘要")
     content = models.TextField('正文')
     page_view = models.BigIntegerField('访问量', default=0)
 
