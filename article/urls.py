@@ -2,7 +2,7 @@
 # @Author: CarlZ
 # @Date:   2016-12-14 23:35:04
 # @Last Modified by:   CarlZ
-# @Last Modified time: 2016-12-22 22:52:00
+# @Last Modified time: 2016-12-30 00:27:32
 from django.conf.urls import url
 from . import views
 
@@ -32,4 +32,14 @@ urlpatterns = [
         views.catagories_tags,
         name='catagories_tags'
         ),
+    # /blog/brain
+    url(r'^brain[/]$',
+        views.backend,
+        name='brain'
+        ),
+    # /blog/brain/prefrontal
+    url(r'^brain/prefrontal',
+        views.article_manager,
+        name="prefrontal"
+        )
 ]
