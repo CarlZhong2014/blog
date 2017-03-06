@@ -16,6 +16,9 @@ def create_article(request):
     :param request:
     :return: The page for user to typing his/her own article.
     """
+    if request.method == "GET":
+        cate_list = Category.objects.all()
+        return render(request, "create.html", {"categories": cate_list})
 
 
 def modified_article(request):

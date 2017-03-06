@@ -2,15 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Category</title>
+    <title>Create Article</title>
 </head>
 <body>
-    <form action="{% url 'backend_create_category' %}" method="POST">
+    <form action="{% url 'backend_create_article' %}" method="POST">
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="创建">
+        <label for="title">标题</label>
+        <input id="title" name="title" type="text" maxlength="40">
+        <label for="author">作者</label>
+        <input id="author" name="author" type="text" maxlength="40" value="CarlZhong">
+        <label for="category">类别</label>
+        <select id="category" name="categories">
+            {% for item in categories %}
+                <option value="{{ item.id }}">{{  item.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="topped">置顶</label>
+        <input id="topped" name="topped" type="checkbox" checked="true">
+        <label for="status">发布</label>
+        <input id="status" name="status" type="checkbox" checked="true">
+        <label for="abstract">摘要</label>
+        <input id="abstract" name="abstract" type="text" maxlength="250">
+        <label for="content">正文</label>
+        <input id="content" name="content" type="text" >
+        <input type="submit" value="发布">
     </form>
 </body>
 </html>
