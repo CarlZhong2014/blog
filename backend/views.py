@@ -53,13 +53,7 @@ def create_category(request):
     :param request:
     :return: The page for user to typing his/her own article.
     """
-    if request.method == 'POST':
-        createForm = forms.categoryForm(request.POST)
-        if createForm.is_valid():
-            createForm.save()
-            return render(request, 'success.html')
-    createForm = forms.categoryForm()
-    return render(request, 'create.html', {"form": createForm})
+    return render(request, 'category_create.html')
 
 
 def modified_category(request):

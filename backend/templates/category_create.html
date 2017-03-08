@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Article</title>
+</head>
+<body>
+<form action="{% url 'backend_create_category' %}" method="POST">
+    {% csrf_token %}
+    <label for="name">类别名</label>
+    <input id="name" name="name" type="text" maxlength="20">
+    <label for="nav_status">导航项</label>
+    <input id="nav_status" name="nav_status" type="checkbox" >
+    <input type="submit" value="创建">
+</form>
+</body>
+</html>
