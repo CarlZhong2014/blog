@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+</head>
+<body>
+<a href="{% url 'backend_create_category' %}">创建</a>
+<ul>
+    {% for item in item_list %}
+        <li>{{ item.name }}</li>
+        <a href="./modified?id={{ item.id }}">修改</a>
+        <a href="./delete?id={{ item.id }}">删除</a>
+        {{ item.nav_status }}
+    {% endfor %}
+</ul>
+</body>
+</html>

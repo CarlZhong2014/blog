@@ -5,12 +5,16 @@
     <title>list</title>
 </head>
 <body>
+<a href="{% url 'backend_create_article' %}">创建</a>
 <ul>
     {% for item in item_list %}
-        <li>{{ item.name }}</li>
-        <a href="./modified?id={{ item.id }}">修改</a>
-        <a href="./{{ item.id }}/delete">删除</a>
-        {{ item.nav_status }}
+        <li>
+            {{ item.title }}
+        </li>
+        <a href="./modified?pk={{ item.pk }}">修改</a>
+        <a href="./delete?pk={{ item.pk }}">删除</a>
+        {{ item.topped }}
+        {{ item.status }}
     {% endfor %}
 </ul>
 </body>

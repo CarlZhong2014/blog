@@ -12,7 +12,7 @@
         <label for="author">作者</label>
         <input id="author" name="author" type="text" maxlength="40" value="CarlZhong">
         <label for="category">类别</label>
-        <select id="category" name="categories">
+        <select id="category" name="category">
             {% for item in categories %}
                 <option value="{{ item.id }}">{{  item.name }}</option>
             {% endfor %}

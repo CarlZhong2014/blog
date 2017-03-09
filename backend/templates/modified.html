@@ -5,12 +5,31 @@
     <title>Create Category</title>
 </head>
 <body>
-    <form action="{% url 'backend_modified_category' %}" method="POST">
+    <form action="{% url 'backend_modified_article' %}" method="POST">
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input type="hidden" name="pk" value="{{ pk }}" >
+        <label for="title">标题</label>
+        <input id="title" name="title" type="text" maxlength="40" value="{{ artInfo.title }}">
+        <label for="author">作者</label>
+        <input id="author" name="author" type="text" maxlength="40" value="{{ artInfo.author }}">
+        <label for="category">类别</label>
+        <select id="category" name="category">
+            {% for item in categories %}
+                {% if artInfo.category.name in item.name %}
+                    <option value="{{ item.id }}" selected = "selected" >{{  item.name }}</option>
+                {% else %}
+                    <option value="{{ item.id }}">{{  item.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <label for="topped">置顶</label>
+        <input id="topped" name="topped" type="checkbox" checked="{{ artInfo.topped }}">
+        <label for="status">发布</label>
+        <input id="status" name="status" type="checkbox" checked="{{ artInfo.status }}">
+        <label for="abstract">摘要</label>
+        <input id="abstract" name="abstract" type="text" maxlength="250" value="{{ artInfo.abstract }}">
+        <label for="content">正文</label>
+        <input id="content" name="content" type="text" value="{{ artInfo.content }}">
+        <input type="hidden" name="pk" value="{{ artInfo.pk }}" >
         <input type="submit" value="修改">
     </form>
 </body>
