@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form action="{% url 'backend_login' %}" method="POST">
+        {% csrf_token %}
+        <label for="username">用户名</label>
+        <input id="username" name="username" type="text" maxlength="16">
+        <label for="password">密码</label>
+        <input id="password" name="password" type="password" maxlength="16">
+        <input id="redirect" name="redirect" type="hidden" value="{{ redirectUrl }}">
+        <input type="submit" value="登陆">
+    </form>
+</body>
+</html>
