@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^category/modified', views.modified_category, name='backend_modified_category'),
     url(r'^category/delete', views.delete_category, name='backend_delete_category'),
     url(r'^login', auth.user_login, name="backend_login"),
+    url(r'^logout', auth.user_logout, name="backend_logout"),
 ]

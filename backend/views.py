@@ -5,12 +5,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from backend.models import Article, Category
+from django.contrib.auth.decorators import login_required
 from backend import forms
 
 
 # Create your views here.
 
-
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def create_article(request):
     """
     create new article
@@ -51,6 +52,7 @@ def create_article(request):
         return render(request, "create.html", {"categories": cateList})
 
 
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def list_article(request):
     """
     list all article information from article tables;
@@ -61,6 +63,7 @@ def list_article(request):
     return render(request, 'list.html', {'item_list': articleList})
 
 
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def modified_article(request):
     """
     modified a existed article
@@ -106,6 +109,7 @@ def modified_article(request):
         return render(request, "modified.html", {"artInfo": articleInfo, "categories": cateList})
 
 
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def delete_article(request):
     """
     delete article
@@ -119,6 +123,7 @@ def delete_article(request):
     return HttpResponseRedirect(reverse('backend_list_article'))
 
 
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def list_category(request):
     """
     For list all category
@@ -129,6 +134,7 @@ def list_category(request):
     return render(request, 'category_list.html', {'item_list': category_list})
 
 
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def create_category(request):
     """
     create new article
@@ -148,6 +154,7 @@ def create_category(request):
     return render(request, 'category_create.html')
 
 
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def modified_category(request):
     """
     modified a existed article
@@ -184,6 +191,7 @@ def modified_category(request):
             return HttpResponse("unable to delete, it's not existed")
 
 
+@login_required(redirect_field_name="redirect", login_url="/backend/login")
 def delete_category(request):
     """
     delete article

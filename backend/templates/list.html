@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>list</title>
-</head>
-<body>
-<a href="{% url 'backend_create_article' %}">创建</a>
+{% extends "dashboard_base.html" %}
+{% block page_container %}
 <ul>
     {% for item in item_list %}
         <li>
@@ -17,5 +11,4 @@
         {{ item.status }}
     {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock page_container %}
