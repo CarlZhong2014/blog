@@ -1,14 +1,28 @@
 {% extends "dashboard_base.html" %}
 {% block page_container %}
-<ul>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                文章列表
+                <small>我的文章</small>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
     {% for item in item_list %}
-        <li>
-            {{ item.title }}
-        </li>
-        <a href="./modified?pk={{ item.pk }}">修改</a>
-        <a href="./delete?pk={{ item.pk }}">删除</a>
-        {{ item.topped }}
-        {{ item.status }}
+        <div class="row">
+            <div class="col-md-12">
+                    <h1>{{ item.title }}</h1>
+                    <p>{{ item.abstract }}</p>
+                    <p>
+                        <a href="./modified?pk={{ item.pk }}" class="btn btn-primary" role="button">修改</a>
+                    </p>
+                    <p>
+                        <a href="./delete?pk={{ item.pk }}" class="btn btn-primary" role="button">删除</a>
+                    </p>
+            </div>
+        </div>
+        <!-- /. ROW  -->
     {% endfor %}
-</ul>
 {% endblock page_container %}
