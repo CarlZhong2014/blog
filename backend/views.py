@@ -52,7 +52,7 @@ def create_article(request):
         return render(request, "create.html", {"categories": cateList})
 
 
-@login_required(redirect_field_name="redirect", login_url="/backend/login")
+# @login_required(redirect_field_name="redirect", login_url="/backend/login")
 def list_article(request):
     """
     list all article information from article tables;
