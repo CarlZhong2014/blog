@@ -12,15 +12,18 @@
 
     {% for item in item_list %}
         <div class="row">
-            <div class="col-md-12">
-                    <h1>{{ item.title }}</h1>
-                    <p>{{ item.abstract }}</p>
-                    <p>
-                        <a href="./modified?pk={{ item.pk }}" class="btn btn-primary" role="button">修改</a>
-                    </p>
-                    <p>
-                        <a href="./delete?pk={{ item.pk }}" class="btn btn-primary" role="button">删除</a>
-                    </p>
+        <div class="col-md-12">
+            <div class="view">
+                <h2 contenteditable="true">{{ item.title }} </h2>
+                <p contenteditable="true">
+                    {{ item.abstract }}
+                </p>
+                <p>
+                    <a href="./modified?pk={{ item.pk }}" class="btn btn-primary" role="button">修改</a>
+                </p>
+                <p>
+                    <a href="./delete?pk={{ item.pk }}" class="btn btn-danger" role="button">删除</a>
+                </p>
             </div>
         </div>
         <!-- /. ROW  -->
