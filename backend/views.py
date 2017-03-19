@@ -27,7 +27,6 @@ def create_article(request):
         abstract = request.POST.get("abstract")
         content = request.POST.get("content")
         categoryObj = Category.objects.get(pk=categoryID)
-
         if topped is None:
             topped = False
         else:
@@ -60,7 +59,7 @@ def list_article(request):
     :return:
     """
     articleList = Article.objects.all()
-    return render(request, 'list.html', {'item_list': articleList})
+    return render(request, 'list.html', {'articleList': articleList})
 
 
 @login_required(redirect_field_name="redirect", login_url="/backend/login")
@@ -103,7 +102,7 @@ def modified_article(request):
         return HttpResponseRedirect(reverse('backend_list_article'))
 
     if request.method == "GET":
-        articlePK = int(request.GET.get("pk"))
+        articlePK = int(request.GET.get("id"))
         articleInfo = Article.objects.get(pk=articlePK)
         cateList = Category.objects.all()
         return render(request, "modified.html", {"artInfo": articleInfo, "categories": cateList})
