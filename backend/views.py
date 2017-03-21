@@ -89,7 +89,7 @@ def modified_article(request):
         else:
             status = True
 
-        articlePK = int(request.POST.get("pk"))
+        articlePK = int(request.POST.get("id"))
         articleInfo = Article.objects.get(pk=articlePK)
         articleInfo.title = title
         articleInfo.author = author
@@ -130,7 +130,7 @@ def list_category(request):
     :return:
     """
     category_list = Category.objects.all()
-    return render(request, 'category_list.html', {'item_list': category_list})
+    return render(request, 'category_list.html', {'categories': category_list})
 
 
 @login_required(redirect_field_name="redirect", login_url="/backend/login")

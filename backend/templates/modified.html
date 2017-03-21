@@ -1,37 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Category</title>
-</head>
-<body>
-    <form action="{% url 'backend_modified_article' %}" method="POST">
-        {% csrf_token %}
-        <label for="title">标题</label>
-        <input id="title" name="title" type="text" maxlength="40" value="{{ artInfo.title }}">
-        <label for="author">作者</label>
-        <input id="author" name="author" type="text" maxlength="40" value="{{ artInfo.author }}">
-        <label for="category">类别</label>
-        <select id="category" name="category">
-            {% for item in categories %}
-                {% if artInfo.category.name in item.name %}
-                    <option value="{{ item.id }}" selected = "selected" >{{  item.name }}</option>
-                {% else %}
-                    <option value="{{ item.id }}">{{  item.name }}</option>
-                {% endif %}
-            {% endfor %}
-        </select>
-        <label for="topped">置顶</label>
-        <input id="topped" name="topped" type="checkbox" checked="{{ artInfo.topped }}">
-        <label for="status">发布</label>
-        <input id="status" name="status" type="checkbox" checked="{{ artInfo.status }}">
-        <label for="abstract">摘要</label>
-        <input id="abstract" name="abstract" type="text" maxlength="250" value="{{ artInfo.abstract }}">
-        <label for="content">正文</label>
-        <input id="content" name="content" type="text" value="{{ artInfo.content }}">
-        <input type="hidden" name="pk" value="{{ artInfo.pk }}" >
-        <input type="submit" value="修改">
-    </form>
-    <a href="{% url 'backend_logout' %}" > 注销 </a>
-</body>
-</html>
+{% extends "dashboard_base.html" %}
+{% block page_container %}
+    <div class="row">
+        <div class="col-md-5">
+            <h1 class="page-header">编辑新文章
+                <small>一切都是新的开始</small>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <form role="form" id="article" action="{% url 'backend_modified_article' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title">标题</label>
+                            <input id="title" name="title" type="text" maxlength="40" value="{{ artInfo.title }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="author">作者</label>
+                            <input id="author" name="author" type="text" maxlength="40" value="{{ artInfo.author }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-inline" for="topped">
+                                <input id="topped" name="topped" type="checkbox" checked="{{ artInfo.topped }}">置顶
+                            </label>
+                            <label class="checkbox-inline" for="status">
+                                <input id="status" name="status" type="checkbox" checked="{{ artInfo.status }}">发表
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">类别</label>
+                            <select class="form-control" id="category" name="category">
+                                {% for item in categories %}
+                                    <option value="{{ item.id }}">{{ item.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="abstract">摘要</label>
+                            <textarea id="abstract" name="abstract" class="form-control" rows="4" maxlength="250" >{{ artInfo.abstract }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">正文</label>
+                            <textarea id="content" name="content" class="form-control" rows="10">{{ artInfo.content }}</textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="{{ artInfo.pk }}" >
+                            <button type="submit" class="btn btn-primary pull-right" >修改</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
