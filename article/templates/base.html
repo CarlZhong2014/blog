@@ -1,170 +1,159 @@
-{% load staticfiles %}
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{%block title%} Home {%endblock title%} </title>
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "css/nprogress.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
-  <link rel="apple-touch-icon-precomposed" href="{% static "images/icon.png" %}">
-  <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
-  <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
-  <script src="{% static "js/nprogress.js" %}"></script>
-  <script src="{% static "js/jquery.lazyload.min.js" %}"></script>
-  <!--[if gte IE 9]>
-    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="js/html5shiv.min.js" type="text/javascript"></script>
-    <script src="js/respond.min.js" type="text/javascript"></script>
-    <script src="js/selectivizr-min.js" type="text/javascript"></script>
-  <![endif]-->
-  <!--[if lt IE 9]>
-    <script>window.location.href='upgrade-browser.html';</script>
-  <![endif]-->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog Home - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/blog-home.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body class="user-select {% block bodystyle %} {% endblock bodystyle%}">
-<header class="header">
-<nav class="navbar navbar-default" id="navbar">
-<div class="container">
-  <div class="header-topbar hidden-xs link-border"> </div>
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-    <h1 class="logo hvr-bounce-in"><a href="http://imcarlz.tk" title="Eagleye"><img src="{% static "images/logo.jpg" %}" alt="Eagleye"></a></h1>
-  </div>
-<!-- 搜索 -->
-  <div class="collapse navbar-collapse" id="header-navbar">
-    <form class="navbar-form visible-xs" action="/Search" method="post">
-      <div class="input-group">
-        <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
-        <span class="input-group-btn">
-        <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-        </span> </div>
-    </form>
 
-    <!-- 导航 -->
-    <ul class="nav navbar-nav navbar-left">
-      <li><a data-cont="Eagleye" title="Eagleye" href="{% url "blog_home" %}">首页</a></li>
-      {% for item in nav %}
-        <li><a data-cont="{{item.name}}" title="{{item.name}}" href="{% url "catagories" item.en_name %}">{{item.name}}</a></li>
-      {% endfor %}
-      <li><a data-cont="关于" title="关于" href="about" >关于</a></li>
-    </ul>
-  </div>
-</div>
-</nav>
-</header>
-<section class="container">
-  <div class="content-wrap">
-    <div class="content">
-      {% block content %}
-        <div class="title">
-          <h3>最新发布</h3>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-      <!-- 文章列表 -->
-        {% for article in articles_list %}
-        <article class="excerpt excerpt-{{article.id}}" style="">
-          <a class="focus" href="detail/{{article.id}}" title="{{article.title}}" target="_blank" ><img class="thumb" data-original="{% static "images/2017112701.jpeg" %}" src="{% static "      images/2017112701.jpeg" %}" alt="{{article.title}}"  style="display:   inline;"></a>
-          <!-- 文章类别 -->
-          <header><a class="cat" href="{% url "catagories" article.catagory.en_name %}" title="{{article.catagory.en_name}}" >{{article.catagory.name}}<i></i></a>
-          <!-- 文章标题 -->
-            <h2>
-              <a href="{% url "article_detail" article.id %}" title="{{article.title}}" target="_blank" >{{article.title}}</a>
-            </h2>
-          </header>
-          <p class="meta">
-          <!-- 文章发布时间 -->
-            <time class="time"><i class="glyphicon glyphicon-time"></i> {{article.pubdate}}</time>
-          <!-- 文章阅读数和评论数 -->
-            <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{article.page_view}}</span> <a class="comment" href="##comment" title="评论"   target="_blank" ><i class="      glyphicon glyphicon-comment"></i> 0</a>
-          </p>
-          <p class="note">{{article.abstract}}</p>
-        </article>
-        {%endfor%}
+        <!-- /.container -->
+    </nav>
 
-        <nav class="pagination" style="display: none;">
-          <ul>
-            <li class="prev-page"></li>
-            <li class="active"><span>1</span></li>
-            <li><a href="?page=2">2</a></li>
-            <li class="next-page"><a href="?page=2">下一页</a></li>
-            <li><span>共 2 页</span></li>
-          </ul>
-        </nav>
-      </div>
-      </div>
-      {% endblock content%}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>Blog Categories</h4>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                                <li><a href="#">Category Name</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Side Widget Well</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
     </div>
-  </div>
-{% block sidebar %}
-<aside class="sidebar">
-<div class="fixed">
-  <div class="widget widget_search">
-    <form class="navbar-form" action="/Search" method="post">
-      <div class="input-group">
-        <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
-        <span class="input-group-btn">
-        <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-        </span>
-      </div>
-    </form>
-  </div>
-  <div class="widget widget_sentence">
-    <h3>标签</h3>
-    <div class="widget-sentence-content">
-        <ul class="plinks ptags">
-            {% block tags %}
-            <li><a href="#list/67/" title="移动统计" draggable="false">Linux <span class="badge">1</span></a></li>
-            {% endblock tags %}
-        </ul>
-    </div>
-   </div>
+    <!-- /.container -->
 
-<div class="widget widget_hot">
-      {% block hots %}
-      <h3>最热文章</h3>
-      <ul>
-      {% for article in hot_article_list %}
-            <li>
-              <a title="{{article.title}}" href="{% url "article_detail" article.id %}" draggable="false">
-                <span class="thumbnail">
-                  <img class="thumb" data-original="{% static "images/2017112701.jpeg" %}" src="{% static "images/2017112701.jpeg" %}" alt="{{article.title}}"  style="display: block;">
-                </span>
-                <span class="text">{{article.title}}</span>
-                <span class="muted">
-                  <i class="glyphicon glyphicon-time"></i>
-                  {{article.pubdate}}
-                </span>
-                <span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{ article.page_view }}</span>
-              </a>
-            </li>
-      {% endfor %}
-      </ul>
-      {% endblock hots %}
- </div>
-<div class="widget widget_sentence">
-  <h3>友情链接</h3>
-  <div class="widget-sentence-link">
-    <a href="#" title="网站建设" target="_blank" >网站建设</a>&nbsp;&nbsp;&nbsp;
-  </div>
-</div>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-</aside>
-{% endblock sidebar %}
-</section>
-<footer class="footer">
-<div class="container">
-<p>Copyright &copy; 2016.Eagleye.<a target="_blank" href="http://imcarlz.tk/about"></a></p>
-</div>
-<div id="gotop"><a class="gotop"></a></div>
-</footer>
-<script src="{% static "js/bootstrap.min.js" %}"></script>
-<script src="{% static "js/jquery.ias.js" %}"></script>
-<script src="{% static "js/scripts.js" %}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
