@@ -18,5 +18,5 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^backend/', include('backend.urls'), name='backend'),
-    url(r'^blog[/]', include('article.urls'), name='articles'),
+    url(r'^blog/', include('article.urls'), name='articles'),
 ]

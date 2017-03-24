@@ -4,7 +4,9 @@
 # @Last Modified by:   CarlZ
 # @Last Modified time: 2016-12-30 00:27:32
 from django.conf.urls import url
-from . import views
+from article import views
 
 urlpatterns = [
+    url(r"^$", views.home, name="article_home"),
+    url(r"^article$", views.blog_post, name="article_blog_post")
 ]
