@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 col-md-offset-4 ">
-                    <form action="{% url 'backend_login' %}" method="POST">
+                    <form name="login" onsubmit="return loginValidate()" action="{% url 'backend_login' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
                             <label class="sr-only" for="username">Username</label>

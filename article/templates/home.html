@@ -7,7 +7,7 @@
         <p><span class="glyphicon glyphicon-time"></span> {{ blogPost.last_modified_date }}</p>
         <hr>
         <p style="word-wrap: break-word;word-break:break-all;">{{ blogPost.abstract }}</p>
-        <a class="btn btn-primary" href="article?id={{ blogPost.id }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-primary" href="{{ homeUrl }}article?id={{ blogPost.id }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
         <hr>
     {% endfor %}

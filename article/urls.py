@@ -8,5 +8,6 @@ from article import views
 
 urlpatterns = [
     url(r"^$", views.home, name="article_home"),
-    url(r"^article$", views.blog_post, name="article_blog_post")
+    url(r"^article$", views.blog_post, name="article_blog_post"),
+    url(r"^category/(?P<cid>\d+)[/]", views.blog_category_list, name="blog_category_list")
 ]
