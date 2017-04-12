@@ -4,6 +4,7 @@ from django.shortcuts import render
 import json
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+import markdown
 
 
 # Create your views here.
@@ -34,6 +35,9 @@ def blog_post(request):
     for cateItem in allCategory:
         link = homeUrl + "category/" + str(cateItem.id)
         categoryNameList.append({"name": cateItem.name, "link": link})
+    articleContent = markdown.markdown(articleInfo.content, extensions=['markdown.extensions.extra',
+                                                                        'markdown.extensions.codehilite'])
+    articleInfo.content = articleContent
     return render(request, "post.html", {"article": articleInfo, "categoryArray": json.dumps(categoryNameList)})
 
 
