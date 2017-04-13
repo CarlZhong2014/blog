@@ -22,14 +22,16 @@ def user_login(request):
         loginUser = auth.authenticate(username=username, password=password)
         # 确认认证结果
         if loginUser is not None:
+            # 验证通过
             auth.login(request, loginUser)
             return HttpResponseRedirect(redirect_to=redirectUrl)
         else:
-            return render(request, "login.html", {"redirectUrl": redirectUrl})
+            # 验证失败
+            return render(request, "login.html", {"redirectUrl": redirectUrl, "failMsg": u"用户或密码错误！！"})
     elif request.method == "GET":
         redirectUrl = request.GET.get("redirect")
         if redirectUrl is None:
-            redirectUrl = "/backend/"
+            redirectUrl = "/backend/article/list"
         return render(request, "login.html", {"redirectUrl": redirectUrl})
 
 

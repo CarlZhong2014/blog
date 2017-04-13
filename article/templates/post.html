@@ -4,25 +4,16 @@
 
     <!-- Title -->
     <h1>{{ article.title }}</h1>
-
+    <hr>
     <!-- Author -->
     <p class="lead">
-        by <a href="#">{{ article.author }}</a>
+   <span class="glyphicon glyphicon-time"></span> {{ article.last_modified_date }} by <a href="#">{{ article.author }}</a>
     </p>
 
-    <hr>
     <!-- Date/Time -->
-    <p><span class="glyphicon glyphicon-time"></span> {{ article.last_modified_date }}
-    <span class="label label-primary">{{ article.category.name }}</span></p>
-    <hr>
-
-    <!-- Preview Image -->
-    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-
     <hr>
 
     <!-- Post Content -->
-    <p class="lead" style="word-wrap: break-word;word-break:break-all;">{{ blogPost.abstract }}</p>
     <div >
     {{ article.content | safe}}
     </div>

@@ -29,6 +29,9 @@
                             <input class="form-password form-control" placeholder="Password..." id="password"
                                    name="password" type="password" maxlength="16">
                         </div>
+                        <div>
+                            <p> {{ failMsg }} </p>
+                        </div>
                         <input id="redirect" name="redirect" type="hidden" value="{{ redirectUrl }}">
                         <button type="submit" class="btn-block">登陆</button>
                     </form>

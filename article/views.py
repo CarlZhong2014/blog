@@ -17,10 +17,9 @@ def home(request):
     for cateItem in allCategory:
         link = "./category/" + str(cateItem.id)
         categoryNameList.append({"name": cateItem.name, "link": link})
-    articleList = Article.objects.all()
+    articleList = Article.objects.filter(status=True)
     return render(request, "home.html", {"categoryArray": json.dumps(categoryNameList), "articles": articleList,
                                          "homeUrl": homeUrl})
-    # return render(request, "home.html", {"categoryArray": json.dumps(allCategory), "articles": articleList})
 
 
 def blog_post(request):
@@ -52,4 +51,3 @@ def blog_category_list(request, cid):
     articleList = categoryRecord.article_set.all()
     return render(request, "home.html", {"categoryArray": json.dumps(categoryNameList), "articles": articleList,
                                          "homeUrl": homeUrl})
-
