@@ -116,7 +116,7 @@ def delete_article(request):
     :return: The page of operation result
     """
     if request.method == "GET":
-        articlePK = int(request.GET.get("pk"))
+        articlePK = int(request.GET.get("id"))
         Article.objects.get(pk=articlePK).delete()
 
     return HttpResponseRedirect(reverse('backend_list_article'))
